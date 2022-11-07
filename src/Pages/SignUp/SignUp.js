@@ -1,7 +1,12 @@
-import React from 'react';
+import { getAuth, updateProfile } from 'firebase/auth';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../ContextAPI/UserContext';
+import { app } from '../../firebase/firebase.init';
 
+const auth = getAuth(app);
 const SignUp = () => {
+    const { signUp } = useContext(AuthContext);
     const handelSignUp = event => {
         event.preventDefault();
         const form = event.target;
@@ -9,7 +14,20 @@ const SignUp = () => {
         const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name, photo, email, password);
+        signUp(email, password)
+            .then(({ user }) => {
+                console.log(user)
+                updateProfile(auth.currentUser, {
+                    displayName: `${name}`, photoURL: `${photo}`
+                }).then(() => {
+                }).catch((error) => {
+                    console.log(error);
+                });
+
+            })
+            .catch(err => {
+                console.log(err)
+            })
         form.reset();
     };
     return (

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../ContextAPI/UserContext';
 
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext);
     const NavItem = <>
         <li><Link className='mx-2 font-bold' to='/'>Home</Link></li>
         <li><Link className='mx-2 font-bold' to='/services'>Services</Link></li>
@@ -26,7 +28,19 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Get started</a>
+                {
+                    user?.email ?
+                        <Link to='/login' className="btn btn-outline btn-secondary">Login</Link>
+                        :
+                        <>
+                            <button onClick={logOut} className="btn btn-outline btn-secondary">Log Out</button>
+                            <div className="avatar">
+                                <div className="w-16 ml-5 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                    <img src="https://placeimg.com/192/192/people" />
+                                </div>
+                            </div>
+                        </>
+                }
             </div>
         </div>
     );
