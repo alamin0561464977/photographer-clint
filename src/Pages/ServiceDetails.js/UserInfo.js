@@ -1,11 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../ContextAPI/UserContext';
+import ReviewCard from './ReviewCard';
 import ReviewForm from './ReviewForm';
 
-const UserInfo = () => {
+const UserInfo = ({ serviceDetail }) => {
     const { user } = useContext(AuthContext);
-
+    const [reviews, setReviews] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:5000/review/${serviceDetail._id}`)
+            .then(res => res.json())
+            .then(data => setReviews(data))
+    }, [serviceDetail]);
     return (
         <div>
             {
@@ -29,10 +35,18 @@ const UserInfo = () => {
                             </div>
                         </div>
                         <div className="divider"></div>
-                        <ReviewForm></ReviewForm>
+                        <ReviewForm serviceDetail={serviceDetail}></ReviewForm>
                     </div>
                     : <h1 className=' font-bold'>Places <Link className=' text-green-600' to='/login'>Login</Link> then Add Review</h1>
             }
+            <div>
+                {
+                    reviews.map(review => <ReviewCard
+                        key={review._id}
+                        review={review}
+                    ></ReviewCard>)
+                }
+            </div>
         </div>
     );
 };
