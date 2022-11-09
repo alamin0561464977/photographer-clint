@@ -1,6 +1,8 @@
 import React from 'react';
+import useSetTitle from '../../hooks/useSetTitle';
 
 const Blogs = () => {
+    useSetTitle('Blogs');
     return (
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 p-8'>
             <div className="card card-compact w-full bg-base-100 shadow-xl">

@@ -27,7 +27,7 @@ const Header = () => {
                         {NavItem}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">The Magic Hour Photographer</a>
+                <h2 className="normal-case font-bold text-xl">Magic <span className=' text-pink-700'>Photographer</span></h2>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">

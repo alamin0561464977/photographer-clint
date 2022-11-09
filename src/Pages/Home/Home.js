@@ -3,8 +3,11 @@ import Dog from './Dog/Dog';
 import HomeServices from './HomeServices/HomeServices';
 import ImageSection from './ImageSection/ImageSection';
 import TopBanner from './TopBanner/TopBanner';
+import 'react-toastify/dist/ReactToastify.css';
+import useSetTitle from '../../hooks/useSetTitle';
 
 const Home = () => {
+    useSetTitle('Home')
     return (
         <div>
             <TopBanner></TopBanner>

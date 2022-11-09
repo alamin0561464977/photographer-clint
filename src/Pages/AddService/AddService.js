@@ -1,8 +1,13 @@
 import React, { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../ContextAPI/UserContext';
+import useSetTitle from '../../hooks/useSetTitle';
 
 const AddService = () => {
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+    useSetTitle('Add Service');
     const handelAddService = event => {
         event.preventDefault();
         const form = event.target;
@@ -31,7 +36,12 @@ const AddService = () => {
             body: JSON.stringify(service)
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Service Added');
+                    navigate('/services');
+                };
+            })
         form.reset();
     };
     return (

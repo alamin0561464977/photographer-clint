@@ -3,11 +3,13 @@ import React, { useContext, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { AuthContext } from '../../ContextAPI/UserContext';
 import { app } from '../../firebase/firebase.init';
+import useSetTitle from '../../hooks/useSetTitle';
 
 const auth = getAuth(app);
 const SignUp = () => {
     const { signUp, user } = useContext(AuthContext);
     const [error, setError] = useState(null);
+    useSetTitle('Sign Up')
     const handelSignUp = event => {
         setError(null);
         event.preventDefault();

@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../ContextAPI/UserContext';
+import useSetTitle from '../../hooks/useSetTitle';
 
 const ReviewUpdate = () => {
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
     const review = useLoaderData();
-    console.log(review)
+    useSetTitle('Review Update')
     const { messes, reding, _id } = review;
     const handelReviewForm = event => {
         event.preventDefault();
@@ -29,7 +32,12 @@ const ReviewUpdate = () => {
             body: JSON.stringify(review)
         })
             .then(res => res.json())
-            .then(data => console.log(data));
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Update Success');
+                    navigate('/my-reviews');
+                }
+            });
         form.reset();
     };
     return (

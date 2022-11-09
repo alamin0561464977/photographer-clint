@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../ContextAPI/UserContext';
+import useSetTitle from '../../hooks/useSetTitle';
 import MyReviewRow from './MyReviewRow';
 
 const MyReview = () => {
     const [myReviews, setMyReviews] = useState([]);
     const { user } = useContext(AuthContext);
+    useSetTitle('My Reviews')
 
     useEffect(() => {
         fetch(`http://localhost:5000/my-review?email=${user?.email}`)
@@ -24,6 +27,7 @@ const MyReview = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.acknowledged) {
+                        toast.success('Delete Success');
                         const remaining = myReviews.filter(r => r._id !== id);
                         setMyReviews(remaining);
                     }

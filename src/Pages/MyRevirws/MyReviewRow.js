@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const MyReviewRow = ({ review, handelDeleteReview }) => {
-    const { img, price, title, messes, displayName, photoURL, email, _id, reding, description } = review;
+    const { title, messes, displayName, photoURL, email, _id, reding } = review;
     console.log(review)
     return (
         <div className="items-center h-full shadow-xl p-5 rounded-lg border-4 border-gray-400">
@@ -10,7 +10,7 @@ const MyReviewRow = ({ review, handelDeleteReview }) => {
                 <div className='flex mb-5 w-full'>
                     <div className="avatar mr-5">
                         <div className="w-16 ml-5 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                            <img src={photoURL} />
+                            <img alt='' src={photoURL} />
                         </div>
                     </div>
                     <div>
@@ -27,7 +27,7 @@ const MyReviewRow = ({ review, handelDeleteReview }) => {
                 <div className=' text-right'>
                     <button
                         onClick={() => handelDeleteReview(title, _id)}
-                        className="btn btn-circle">
+                        className="btn btn-circle btn-outline hover:bg-rose-700">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
                     </button>
                 </div>

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../ContextAPI/UserContext';
 
 const ReviewForm = ({ serviceDetail }) => {
@@ -27,7 +27,12 @@ const ReviewForm = ({ serviceDetail }) => {
             body: JSON.stringify(review)
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Success Add Review');
+                    window.location.reload();
+                }
+            })
         form.reset();
     };
     return (
