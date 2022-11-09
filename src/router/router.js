@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import AddService from "../Pages/AddService/AddService";
@@ -42,7 +43,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/review-update/:id',
-                element: <PrivateRouter><ReviewUpdate></ReviewUpdate></PrivateRouter>
+                element: <PrivateRouter><ReviewUpdate></ReviewUpdate></PrivateRouter>,
+                loader: ({ params }) => fetch(`http://localhost:5000/rreview/${params.id}`)
             },
             {
                 path: '/add-service',
@@ -57,6 +59,6 @@ export const router = createBrowserRouter([
     },
     {
         path: '*',
-        element: <h1>404</h1>
+        element: <img src="https://lh6.googleusercontent.com/Bu-pRqU_tWZV7O3rJ5nV1P6NjqFnnAs8kVLC5VGz_Kf7ws0nDUXoGTc7pP87tyUCfu8VyXi0YviIm7CxAISDr2lJSwWwXQxxz98qxVfMcKTJfLPqbcfhn-QEeOowjrlwX1LYDFJN" alt="" />
     }
 ])

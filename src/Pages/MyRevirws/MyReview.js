@@ -31,19 +31,11 @@ const MyReview = () => {
         }
     }
     return (
-        <div className="overflow-x-auto w-full">
+        <div className="overflow-x-auto p-12 w-full">
             {
                 myReviews.length === 0 ? <h3 className=' font-bold'>No Service Review <Link className=' font-bold text-green-600' to='/services'>Services</Link></h3>
                     :
-                    <table className="table w-full">
-                        <thead>
-                            <tr>
-                                <th>Service</th>
-                                <th>User</th>
-                                <th>Update</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
+                    <div className=' grid gap-5 grid-cols-1 lg:grid-cols-2'>
                         {
                             myReviews.map(review => <MyReviewRow
                                 key={review._id}
@@ -51,8 +43,7 @@ const MyReview = () => {
                                 handelDeleteReview={handelDeleteReview}
                             ></MyReviewRow>)
                         }
-
-                    </table>
+                    </div>
             }
         </div>
     );
