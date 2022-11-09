@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import { AuthContext } from '../../ContextAPI/UserContext';
 
 const Login = () => {
-    const { login } = useContext(AuthContext);
+    const { login, googleLogin, user } = useContext(AuthContext);
+    const [error, setError] = useState(null);
     const handelLogin = event => {
+        setError(null)
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
@@ -14,12 +16,16 @@ const Login = () => {
                 console.log(user)
             })
             .catch(err => {
-                console.log(err)
+                console.log(err);
+                setError(err.message);
             })
         form.reset();
     };
     return (
         <div className="hero min-h-screen bg-base-200">
+            {
+                user && <Navigate to="/services" replace={true} />
+            }
             <div className="hero-content px-40 flex-col lg:flex-row-reverse">
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <form onSubmit={handelLogin} className="card-body">
@@ -35,9 +41,12 @@ const Login = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input name='password' required type="password" placeholder="password" className="input input-bordered" />
-                            {/* <label className="label">
-                                <a href="#" className="label-text-alt font-bold text-red-500 link link-hover">Forgot password?</a>
-                            </label> */}
+                            {
+                                error &&
+                                <label className="label">
+                                    <p className="label-text-alt font-bold text-red-600 link link-hover">{error}</p>
+                                </label>
+                            }
                             <label className="label">
                                 <Link to="/sign-up" className="label-text-alt font-bold text-green-700 link link-hover">Sign Up</Link>
                             </label>
@@ -46,6 +55,11 @@ const Login = () => {
                             <button type='submit' className="btn font-bold text-white bg-pink-800">Login</button>
                         </div>
                     </form>
+                    <div className="divider">OR</div>
+                    <button
+                        onClick={googleLogin}
+                        className="btn mx-auto my-3 hover:bg-gray-600 btn-active btn-wide"
+                    >Google</button>
                 </div>
                 <div className="text-center lg:text-left">
                     <img className=' w-3/5' src="https://pathwayport.com/saasland/images/login@4x.png" alt="" />

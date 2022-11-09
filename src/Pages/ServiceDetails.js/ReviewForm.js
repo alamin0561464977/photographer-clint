@@ -10,8 +10,19 @@ const ReviewForm = ({ serviceDetail }) => {
         const reding = form.reding.value;
         const messes = form.messes.value;
         const { displayName, email, photoURL } = user;
+        const { img, price, title } = serviceDetail;
         const details_id = serviceDetail._id;
-        const review = { displayName, reding, messes, email, photoURL, details_id };
+        const review = {
+            displayName,
+            reding,
+            messes,
+            email,
+            photoURL,
+            details_id,
+            img,
+            price,
+            title
+        };
         fetch('http://localhost:5000/service-review', {
             method: 'POST',
             headers: {

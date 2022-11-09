@@ -5,9 +5,16 @@ import { AuthContext } from '../../../ContextAPI/UserContext';
 const Header = () => {
     const { user, logOut, loading } = useContext(AuthContext);
     const NavItem = <>
-        <li><Link className='mx-2 font-bold' to='/'>Home</Link></li>
-        <li><Link className='mx-2 font-bold' to='/services'>Services</Link></li>
-        <li><Link className='mx-2 font-bold' to='/blogs'>Blogs</Link></li>
+        <li><Link className='mr-1 font-bold' to='/'>Home</Link></li>
+        <li><Link className='mr-1 font-bold' to='/services'>Services</Link></li>
+        <li><Link className='mr-1 font-bold' to='/blogs'>Blogs</Link></li>
+        {
+            user?.email &&
+            <>
+                <li><Link className='mr-1 font-bold' to='/my-reviews'>My Review</Link></li>
+                <li><Link className='mr-1 font-bold' to='/Add-service'>Add Service</Link></li>
+            </>
+        }
     </>
     return (
         <div className="navbar bg-base-100">

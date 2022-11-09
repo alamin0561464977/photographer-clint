@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ReviewCard = ({ review }) => {
-    const { displayName, email, photoURL, messes } = review;
+    const { displayName, email, photoURL, messes, reding } = review;
     console.log(review)
     return (
         <div className="items-center m-5 p-5 rounded-lg border-4 border-gray-400">
@@ -24,7 +24,8 @@ const ReviewCard = ({ review }) => {
             </div>
             <div className="divider"></div>
             <div>
-                <p className=' font-bold'>{messes}</p>
+                <h3 className=' text-green-500 font-bold text-lg'>Reding: {reding}</h3>
+                <p className='font-bold'>{messes}</p>
             </div>
         </div>
     );

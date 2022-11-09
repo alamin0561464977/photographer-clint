@@ -1,13 +1,15 @@
 import { getAuth, updateProfile } from 'firebase/auth';
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import { AuthContext } from '../../ContextAPI/UserContext';
 import { app } from '../../firebase/firebase.init';
 
 const auth = getAuth(app);
 const SignUp = () => {
-    const { signUp } = useContext(AuthContext);
+    const { signUp, user } = useContext(AuthContext);
+    const [error, setError] = useState(null);
     const handelSignUp = event => {
+        setError(null);
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
@@ -20,18 +22,23 @@ const SignUp = () => {
                 updateProfile(auth.currentUser, {
                     displayName: `${name}`, photoURL: `${photo}`
                 }).then(() => {
-                }).catch((error) => {
+                }).catch((err) => {
                     console.log(error);
+                    setError(err.message);
                 });
 
             })
             .catch(err => {
-                console.log(err)
+                console.log(err);
+                setError(err.message);
             })
         form.reset();
     };
     return (
         <div className="hero min-h-screen bg-base-200">
+            {
+                user && <Navigate to="/services" replace={true} />
+            }
             <div className="hero-content px-40 flex-col lg:flex-row-reverse">
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <form onSubmit={handelSignUp} className="card-body">
@@ -59,9 +66,12 @@ const SignUp = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input name='password' required type="password" placeholder="password" className="input input-bordered" />
-                            {/* <label className="label">
-                                <a href="#" className="label-text-alt font-bold text-red-500 link link-hover">Forgot password?</a>
-                            </label> */}
+                            {
+                                error &&
+                                <label className="label">
+                                    <p className="label-text-alt font-bold text-red-600 link link-hover">{error}</p>
+                                </label>
+                            }
                             <label className="label">
                                 <Link to="/login" className="label-text-alt font-bold text-green-700 link link-hover">Login</Link>
                             </label>

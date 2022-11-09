@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const HomeServiceCard = ({ service }) => {
+    console.log(service)
     const { img, title, description, price, _id, reding } = service;
     return (
         <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
