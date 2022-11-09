@@ -1,6 +1,7 @@
 import React from 'react';
 import Dog from './Dog/Dog';
 import HomeServices from './HomeServices/HomeServices';
+import ImageSection from './ImageSection/ImageSection';
 import TopBanner from './TopBanner/TopBanner';
 
 const Home = () => {
@@ -9,6 +10,7 @@ const Home = () => {
             <TopBanner></TopBanner>
             <HomeServices></HomeServices>
             <Dog></Dog>
+            <ImageSection></ImageSection>
         </div>
     );
 };
