@@ -11,7 +11,7 @@ const MyReview = () => {
     useSetTitle('My Reviews');
 
     useEffect(() => {
-        fetch(`http://localhost:5000/my-review?email=${user?.email}`, {
+        fetch(`https://photographer-server-xi.vercel.app/my-review?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('photographer_token')}`
             }
