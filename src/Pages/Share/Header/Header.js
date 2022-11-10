@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../ContextAPI/UserContext';
 
 const Header = () => {
-    const { user, logOut, loading } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const NavItem = <>
         <li><Link className='mr-1 font-bold' to='/'>Home</Link></li>
         <li><Link className='mr-1 font-bold' to='/services'>Services</Link></li>
@@ -41,7 +41,7 @@ const Header = () => {
                             <button onClick={logOut} className="btn btn-outline btn-secondary">Log Out</button>
                             <div className="avatar">
                                 <div className="w-16 ml-5 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                    <img src={user?.photoURL} />
+                                    <img alt='' src={user?.photoURL} />
                                 </div>
                             </div>
                         </>

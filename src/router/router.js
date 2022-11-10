@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import AddService from "../Pages/AddService/AddService";
@@ -44,7 +43,7 @@ export const router = createBrowserRouter([
             {
                 path: '/review-update/:id',
                 element: <PrivateRouter><ReviewUpdate></ReviewUpdate></PrivateRouter>,
-                loader: ({ params }) => fetch(`http://localhost:5000/rreview/${params.id}`)
+                loader: ({ params }) => fetch(`https://photographer-server-xi.vercel.app/rreview/${params.id}`)
             },
             {
                 path: '/add-service',
@@ -53,7 +52,7 @@ export const router = createBrowserRouter([
             {
                 path: '/service-details/:id',
                 element: <ServiceDetails></ServiceDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/service-details/${params.id}`)
+                loader: ({ params }) => fetch(`https://photographer-server-xi.vercel.app/service-details/${params.id}`)
             }
         ]
     },

@@ -4,10 +4,11 @@ import { Link, Navigate } from 'react-router-dom';
 import { AuthContext } from '../../ContextAPI/UserContext';
 import { app } from '../../firebase/firebase.init';
 import useSetTitle from '../../hooks/useSetTitle';
+import { verifyJWT } from '../../utilitys/verifyJWT';
 
 const auth = getAuth(app);
 const SignUp = () => {
-    const { signUp, user } = useContext(AuthContext);
+    const { signUp, user, logOut } = useContext(AuthContext);
     const [error, setError] = useState(null);
     useSetTitle('Sign Up')
     const handelSignUp = event => {
@@ -20,7 +21,7 @@ const SignUp = () => {
         const password = form.password.value;
         signUp(email, password)
             .then(({ user }) => {
-                console.log(user)
+                verifyJWT(user, logOut);
                 updateProfile(auth.currentUser, {
                     displayName: `${name}`, photoURL: `${photo}`
                 }).then(() => {

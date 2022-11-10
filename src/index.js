@@ -5,12 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import UserContext from './ContextAPI/UserContext';
 import { ToastContainer } from 'react-toastify';
+import { PhotoProvider } from 'react-photo-view';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <UserContext>
-      <App />
+      <PhotoProvider>
+        <App />
+      </PhotoProvider>
       <ToastContainer />
     </UserContext>
   </React.StrictMode>

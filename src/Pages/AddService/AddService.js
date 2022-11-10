@@ -28,10 +28,12 @@ const AddService = () => {
             reding,
             description
         };
-        fetch('http://localhost:5000/add-service', {
+        fetch('https://photographer-server-xi.vercel.app/add-service', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('photographer_token')}`
+
             },
             body: JSON.stringify(service)
         })

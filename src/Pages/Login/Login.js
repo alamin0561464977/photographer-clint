@@ -1,10 +1,21 @@
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { AuthContext } from '../../ContextAPI/UserContext';
+import { app } from '../../firebase/firebase.init';
 import useSetTitle from '../../hooks/useSetTitle';
+import { verifyJWT } from '../../utilitys/verifyJWT';
 
+const auth = getAuth(app);
 const Login = () => {
-    const { login, googleLogin, user } = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
+    const { login, user, logOut } = useContext(AuthContext);
+    const googleLogIn = () => {
+        signInWithPopup(auth, googleProvider)
+            .then(({ user }) => {
+                console.log(user)
+            })
+    }
     const [error, setError] = useState(null);
     useSetTitle('Login');
     const handelLogin = event => {
@@ -15,7 +26,8 @@ const Login = () => {
         const password = form.password.value;
         login(email, password)
             .then(({ user }) => {
-                console.log(user)
+                verifyJWT(user, logOut);
+
             })
             .catch(err => {
                 console.log(err);
@@ -59,7 +71,7 @@ const Login = () => {
                     </form>
                     <div className="divider">OR</div>
                     <button
-                        onClick={googleLogin}
+                        onClick={googleLogIn}
                         className="btn mx-auto my-3 hover:bg-gray-600 btn-active btn-wide"
                     >Google</button>
                 </div>

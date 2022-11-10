@@ -5,6 +5,7 @@ import ImageSection from './ImageSection/ImageSection';
 import TopBanner from './TopBanner/TopBanner';
 import 'react-toastify/dist/ReactToastify.css';
 import useSetTitle from '../../hooks/useSetTitle';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const Home = () => {
     useSetTitle('Home')

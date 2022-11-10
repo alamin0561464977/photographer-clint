@@ -19,7 +19,7 @@ const ReviewForm = ({ serviceDetail }) => {
             photoURL,
             details_id,
         };
-        fetch('http://localhost:5000/service-review', {
+        fetch('https://photographer-server-xi.vercel.app/service-review', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

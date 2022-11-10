@@ -8,17 +8,21 @@ import MyReviewRow from './MyReviewRow';
 const MyReview = () => {
     const [myReviews, setMyReviews] = useState([]);
     const { user } = useContext(AuthContext);
-    useSetTitle('My Reviews')
+    useSetTitle('My Reviews');
 
     useEffect(() => {
-        fetch(`http://localhost:5000/my-review?email=${user?.email}`)
+        fetch(`http://localhost:5000/my-review?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('photographer_token')}`
+            }
+        })
             .then(res => res.json())
             .then(data => setMyReviews(data))
     }, [user])
     const handelDeleteReview = (title, id) => {
         const agree = window.confirm(`you Delete ${title} This Review`);
         if (agree) {
-            fetch('http://localhost:5000/delete-review', {
+            fetch('https://photographer-server-xi.vercel.app/delete-review', {
                 method: 'DELETE',
                 headers: {
                     id: id

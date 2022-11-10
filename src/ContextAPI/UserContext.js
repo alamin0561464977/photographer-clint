@@ -7,7 +7,7 @@ const auth = getAuth(app);
 const UserContext = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const googleProvider = new GoogleAuthProvider();
+
 
 
     const signUp = (email, password) => {
@@ -18,12 +18,8 @@ const UserContext = ({ children }) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     };
-    const googleLogin = () => {
-        signInWithPopup(auth, googleProvider);
-    }
     const logOut = () => {
         setLoading(true);
-        console.log('alll')
         return signOut(auth);
     };
 
@@ -38,7 +34,7 @@ const UserContext = ({ children }) => {
         return () => unsubscribe();
     }, [])
 
-    const authInfo = { user, loading, signUp, login, logOut, googleLogin };
+    const authInfo = { user, loading, signUp, login, logOut };
     return (
         <div>
             <AuthContext.Provider value={authInfo}>

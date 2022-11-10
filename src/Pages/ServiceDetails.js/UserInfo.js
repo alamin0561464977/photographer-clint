@@ -8,7 +8,7 @@ const UserInfo = ({ serviceDetail }) => {
     const { user } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/review/${serviceDetail._id}`)
+        fetch(`https://photographer-server-xi.vercel.app/review/${serviceDetail._id}`)
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [serviceDetail]);

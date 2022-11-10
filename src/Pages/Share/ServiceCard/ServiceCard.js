@@ -1,4 +1,5 @@
 import React from 'react';
+import { PhotoView } from 'react-photo-view';
 import { Link } from 'react-router-dom';
 
 const HomeServiceCard = ({ service }) => {
@@ -6,11 +7,13 @@ const HomeServiceCard = ({ service }) => {
     const { img, title, description, price, _id, reding } = service;
     return (
         <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
-            <img
-                src={img}
-                className="object-cover w-full h-64"
-                alt=""
-            />
+            <PhotoView src={img}>
+                <img
+                    src={img}
+                    className="object-cover w-full h-64"
+                    alt=""
+                />
+            </PhotoView>
             <div className="p-5 border border-t-0">
                 <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
                     <span className="text-gray-600">28 Dec 2020</span>

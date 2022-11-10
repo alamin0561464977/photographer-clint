@@ -24,7 +24,7 @@ const ReviewUpdate = () => {
             email,
             photoURL,
         };
-        fetch(`http://localhost:5000/update-review/${_id}`, {
+        fetch(`https://photographer-server-xi.vercel.app/update-review/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
