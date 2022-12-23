@@ -5,6 +5,7 @@ import { router } from './router/router';
 import 'react-photo-view/dist/react-photo-view.css';
 
 function App() {
+
   return (
     <div className=" container mx-auto">
       <RouterProvider router={router}>

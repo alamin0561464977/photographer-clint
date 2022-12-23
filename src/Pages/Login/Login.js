@@ -36,11 +36,11 @@ const Login = () => {
         form.reset();
     };
     return (
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen">
             {
                 user && <Navigate to="/services" replace={true} />
             }
-            <div className="hero-content px-40 flex-col lg:flex-row-reverse">
+            <div className="hero-content lg:px-40 flex-col lg:flex-row-reverse">
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <form onSubmit={handelLogin} className="card-body">
                         <h1 className="text-5xl font-bold">Login now!</h1>

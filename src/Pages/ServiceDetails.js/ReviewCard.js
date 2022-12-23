@@ -2,7 +2,6 @@ import React from 'react';
 
 const ReviewCard = ({ review }) => {
     const { displayName, email, photoURL, messes, reding } = review;
-    console.log(review)
     return (
         <div className="items-center m-5 p-5 rounded-lg border-4 border-gray-400">
             <div className='flex mb-5'>

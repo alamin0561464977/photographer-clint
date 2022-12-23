@@ -4,9 +4,16 @@ import { AuthContext } from '../../ContextAPI/UserContext';
 import ReviewCard from './ReviewCard';
 import ReviewForm from './ReviewForm';
 
+const user = [
+    { name: 'g', age: 5, date: '02/03/2022' },
+    { name: 'a', age: 1, date: '02/03/2022' },
+    { name: 'd', age: 4, date: '02/03/2022' },
+    { name: 'z', age: 8, date: '02/03/2022' }
+]
 const UserInfo = ({ serviceDetail }) => {
     const { user } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
+    // reviews.sort((a, b) => b.timeStamp - a.timeStamp).map((review, index) => { console.log(review) })
     useEffect(() => {
         fetch(`https://photographer-server-xi.vercel.app/review/${serviceDetail._id}`)
             .then(res => res.json())

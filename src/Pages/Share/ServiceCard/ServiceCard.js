@@ -2,11 +2,13 @@ import React from 'react';
 import { PhotoView } from 'react-photo-view';
 import { Link } from 'react-router-dom';
 
+
+
 const HomeServiceCard = ({ service }) => {
     console.log(service)
     const { img, title, description, price, _id, reding } = service;
     return (
-        <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
+        <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-lg min-h-[400px] border-spacing-0">
             <PhotoView src={img}>
                 <img
                     src={img}
@@ -14,7 +16,7 @@ const HomeServiceCard = ({ service }) => {
                     alt=""
                 />
             </PhotoView>
-            <div className="p-5 border border-t-0">
+            <div className="p-5">
                 <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
                     <span className="text-gray-600">28 Dec 2020</span>
                 </p>

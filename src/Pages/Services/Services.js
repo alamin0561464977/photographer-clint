@@ -3,19 +3,26 @@ import { Link } from 'react-router-dom';
 import useSetTitle from '../../hooks/useSetTitle';
 import HomeServiceCard from '../Share/ServiceCard/ServiceCard';
 
+
 const Services = () => {
     const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(true);
+
+
     useSetTitle('Services')
     useEffect(() => {
         setLoading(true);
         fetch('https://photographer-server-xi.vercel.app/services-all')
             .then(res => res.json())
-            .then(data => setServices(data))
-        setLoading(false);
+            .then(data => {
+                setServices(data);
+                if (data.length) {
+                    setLoading(false);
+                }
+            })
     }, []);
     if (loading) {
-        return <div className='text-center my-56'><button className="btn loading">loading</button></div>
+        return <div className='text-center my-56'><button className="btn loading">loading...</button></div>
 
     }
     console.log(loading)
